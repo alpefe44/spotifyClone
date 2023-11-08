@@ -31,14 +31,14 @@ const LoginScreen = ({ navigation }) => {
                             <Text style={{ color: 'white', marginVertical: 10, fontWeight: 'bold' }}>
                                 E-posta adresi veya kullanıcı adı
                             </Text>
-                            <TextInput placeholderTextColor={'white'} placeholder={"E-posta adresi veya kullanıcı adı"} style={{ width: '100%', height: 50, borderRadius: 5, borderWidth: 2, borderColor: 'gray', paddingHorizontal: 10 }}></TextInput>
+                            <TextInput placeholderTextColor={'white'} placeholder={"E-posta adresi veya kullanıcı adı"} style={{ width: '100%', height: 50, borderRadius: 20, borderWidth: 2, borderColor: 'gray', paddingHorizontal: 10 }}></TextInput>
                         </View>
                         <View style={{ width: '80%' }}>
                             <Text style={{ color: 'white', marginVertical: 10, fontWeight: 'bold' }}>
                                 Parola
                             </Text>
                             <View style={{ position: 'relative', width: '100%', flexDirection: 'row', alignItems: 'center' }}>
-                                <TextInput placeholderTextColor={'white'} placeholder={"Parola"} style={{ width: '100%', height: 50, borderRadius: 5, borderWidth: 2, borderColor: 'gray', paddingHorizontal: 10 }}></TextInput>
+                                <TextInput placeholderTextColor={'white'} placeholder={"Parola"} style={{ width: '100%', height: 50, borderRadius: 20, borderWidth: 2, borderColor: 'gray', paddingHorizontal: 10 }}></TextInput>
                                 <TouchableOpacity style={{ position: 'absolute', right: 10 }}>
                                     <Entypo name="eye-with-line" size={24} color="white" />
                                 </TouchableOpacity>
