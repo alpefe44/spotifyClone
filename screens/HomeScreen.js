@@ -3,7 +3,7 @@ import React from 'react'
 import { tracks } from '../assets/data/track'
 
 const HomeScreen = () => {
-
+    //deneme
     const renderItem = ({ item }) => {
         return (
             <View style = {{padding:10}}>
