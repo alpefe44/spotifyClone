@@ -45,7 +45,7 @@ const TabNav = () => {
 
 
             })} >
-            <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: false, headerTitleAlign: 'center', headerStyle: { backgroundColor: 'black' }, headerTintColor: 'white' }} />
+            <Tab.Screen name="Home" component={HomeScreen} options={{ headerShown: true, headerTitleAlign: 'center', headerStyle: { backgroundColor: 'black' }, headerTintColor: 'white' }} />
             <Tab.Screen name="Search" component={SearchScreen} options={{ headerTitleAlign: 'center', headerStyle: { backgroundColor: 'black', borderBottomStartRadius: 10, borderBottomEndRadius: 10 }, headerTintColor: 'white' }} />
         </Tab.Navigator>
     )

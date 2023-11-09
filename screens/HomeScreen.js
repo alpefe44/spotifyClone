@@ -17,7 +17,7 @@ const HomeScreen = () => {
                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
                     <Image style={{ width: 50, height: 50 }} source={{ uri: item.album.images[0]?.url }}></Image>
                     <View style={{ marginLeft: 10, flexWrap: 'nowrap', width: 'auto' }}>
-                        <Text style={{ color: track.name === item.name ? 'green' : 'white', fontSize: 15, fontWeight: 'bold' }}>{item.name}</Text>
+                        <Text style={{ color: track?.name === item.name ? 'green' : 'white', fontSize: 15, fontWeight: 'bold' }}>{item.name}</Text>
                         <Text style={{ fontWeight: 'bold', color: 'white' }}>{item.artists[0]?.name}</Text>
                     </View>
                 </View>
@@ -32,21 +32,21 @@ const HomeScreen = () => {
                 <FlatList
                     data={tracks}
                     renderItem={renderItem}
-                    ListHeaderComponent={() => {
-                        return (
-                            <View style={styles.header}>
-                                <FontAwesome name="search" size={16} color="gray" />
-                                <TextInput
-                                    value={search}
-                                    placeholder="What do you want to listen to?"
-                                    onChangeText={setSearch}
-                                    style={styles.input}
-                                />
-                                <Text style={{ color: 'white' }}>Cancel</Text>
-                            </View>
-                        )
+                    // ListHeaderComponent={() => {
+                    //     return (
+                    //         <View style={styles.header}>
+                    //             <FontAwesome name="search" size={16} color="gray" />
+                    //             <TextInput
+                    //                 value={search}
+                    //                 placeholder="What do you want to listen to?"
+                    //                 onChangeText={setSearch}
+                    //                 style={styles.input}
+                    //             />
+                    //             <Text style={{ color: 'white' }}>Cancel</Text>
+                    //         </View>
+                    //     )
 
-                    }}
+                    // }}
                 ></FlatList>
 
             </View>

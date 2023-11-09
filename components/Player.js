@@ -1,16 +1,40 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { tracks } from '../assets/data/track';
 import { usePlayerContext } from '../providers/PlayerProvider';
+import { useEffect, useState } from 'react';
+import { Audio } from 'expo-av';
 
 const Player = () => {
 
+    const [sound, setSound] = useState();
+
     const { track } = usePlayerContext();
-    console.log(track)
+
+
+    useEffect(() => {
+        playTrack();
+    }, [track])
+
+    const playTrack = async () => {
+        if (sound) {
+            await sound.unloadAsync();
+        }
+
+        if (!track?.preview_url) {
+            return
+        }
+
+        const { sound: newSound } = await Audio.Sound.createAsync({
+            uri: track.preview_url
+        })
+        setSound(newSound)
+        await newSound.playAsync();
+    }
 
     if (!track) {
         return null;
     }
+
 
     const image = track.album.images?.[0];
 
@@ -60,8 +84,8 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
-        fontSize:12,
-        fontWeight:'bold'
+        fontSize: 12,
+        fontWeight: 'bold'
     },
     subtitle: {
         color: 'lightgray',
