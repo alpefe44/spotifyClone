@@ -2,12 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import Navigation from './navigation/navigation';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import PlayerProvider from './providers/PlayerProvider';
+
 
 export default function App() {
   return (
-
-    <Navigation></Navigation>
+    <PlayerProvider>
+      <Navigation></Navigation>
+    </PlayerProvider>
 
   );
 }

@@ -1,9 +1,13 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { tracks } from '../assets/data/track';
-const track = tracks[0];
+import { usePlayerContext } from '../providers/PlayerProvider';
 
 const Player = () => {
+
+    const { track } = usePlayerContext();
+    console.log(track)
+
     if (!track) {
         return null;
     }
@@ -56,6 +60,8 @@ const styles = StyleSheet.create({
     },
     title: {
         color: 'white',
+        fontSize:12,
+        fontWeight:'bold'
     },
     subtitle: {
         color: 'lightgray',

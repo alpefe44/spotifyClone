@@ -4,19 +4,20 @@ import { tracks } from '../assets/data/track'
 import { FontAwesome } from '@expo/vector-icons';
 import InfoTracker from '../components/InfoTracker'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { usePlayerContext } from '../providers/PlayerProvider';
 const HomeScreen = () => {
 
-
+    const { track, setTrack } = usePlayerContext();
     const [pressed, setPressed] = useState("")
     const [search, setSearch] = useState("")
 
     const renderItem = ({ item }) => {
         return (
-            <Pressable onPress={() => setPressed(item.name)} style={{ padding: 10, width: '100%' }}>
+            <Pressable onPress={() => setTrack(item)} style={{ padding: 10, width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
                     <Image style={{ width: 50, height: 50 }} source={{ uri: item.album.images[0]?.url }}></Image>
                     <View style={{ marginLeft: 10, flexWrap: 'nowrap', width: 'auto' }}>
-                        <Text style={{ color: pressed === item.name ? 'green' : 'white', fontSize: 15, fontWeight: 'bold' }}>{item.name}</Text>
+                        <Text style={{ color: track.name === item.name ? 'green' : 'white', fontSize: 15, fontWeight: 'bold' }}>{item.name}</Text>
                         <Text style={{ fontWeight: 'bold', color: 'white' }}>{item.artists[0]?.name}</Text>
                     </View>
                 </View>
@@ -41,7 +42,7 @@ const HomeScreen = () => {
                                     onChangeText={setSearch}
                                     style={styles.input}
                                 />
-                                <Text style = {{color : 'white'}}>Cancel</Text>
+                                <Text style={{ color: 'white' }}>Cancel</Text>
                             </View>
                         )
 
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical:10
+        marginVertical: 10
     },
     input: {
         backgroundColor: '#121314',
