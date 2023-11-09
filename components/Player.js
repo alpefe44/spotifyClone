@@ -7,8 +7,8 @@ import { Audio } from 'expo-av';
 const Player = () => {
 
     const [sound, setSound] = useState();
-
     const { track } = usePlayerContext();
+    const [pause, setPause] = useState(true)
 
 
     useEffect(() => {
@@ -16,6 +16,8 @@ const Player = () => {
     }, [track])
 
     const playTrack = async () => {
+        //console.log(sound, "sound")
+        setPause(true)
         if (sound) {
             await sound.unloadAsync();
         }
@@ -35,7 +37,22 @@ const Player = () => {
         return null;
     }
 
+    const pauseMusic = async () => {
+        console.log(pause, "pause")
+        if (!sound) {
+            return
+        }
+        setPause(true)
 
+        if (pause) {
+            setPause(false)
+            sound.pauseAsync();
+        } else {
+            sound.playAsync();
+        }
+
+
+    }
     const image = track.album.images?.[0];
 
     return (
@@ -55,8 +72,9 @@ const Player = () => {
                     style={{ marginHorizontal: 10 }}
                 />
                 <Ionicons
+                    onPress={() => pauseMusic()}
                     disabled={!track?.preview_url}
-                    name={'play'}
+                    name={pause === false ? 'play' : 'stop'}
                     size={22}
                     color={track?.preview_url ? 'white' : 'gray'}
                 />
