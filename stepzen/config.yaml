@@ -1,0 +1,5 @@
+configurationset:
+  - configuration:
+      name: auth_config
+      client_id: 312c4537bfb44a62b2fa996a3f13a486
+      client_secret: b6062cd9286242608000f93fbabb2725

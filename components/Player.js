@@ -74,7 +74,7 @@ const Player = () => {
                 <Ionicons
                     onPress={() => pauseMusic()}
                     disabled={!track?.preview_url}
-                    name={pause === false ? 'play' : 'stop'}
+                    name={pause === false ? 'play' : 'pause'}
                     size={22}
                     color={track?.preview_url ? 'white' : 'gray'}
                 />
