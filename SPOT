@@ -1,0 +1,50 @@
+
+
+curl -X POST "https://accounts.spotify.com/api/token" \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "grant_type=client_credentials&client_id=312c4537bfb44a62b2fa996a3f13a486&client_secret=b6062cd9286242608000f93fbabb2725"
+
+Access Token:BQA6LKYFzhiFUDzpuQDxft9pMRhe_WZcxnRtLN8EFJO1Hs22QzNnPXXfd958zFCrSvp2y1Iq6Qt_xPH9uElKAcQWeFcJbpIfEj2hxvPELd9684kzBkA
+
+curl "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb" \
+     -H "Authorization: Bearer BQA6LKYFzhiFUDzpuQDxft9pMRhe_WZcxnRtLN8EFJO1Hs22QzNnPXXfd958zFCrSvp2y1Iq6Qt_xPH9uElKAcQWeFcJbpIfEj2hxvPELd9684kzBkA"
+
+curl "https://api.spotify.com/v1/recommendations?seed_genres=pop" \
+     -H "Authorization: Bearer BQDvRqyof3v713XxQ71k18Ztxmr4pXpz_sx4zZsNyYSk6e8AQ556Ov77ZFKwzSorvOqhE8fGkBNN6Aysr7x4ReSf0yqnAUvNL8fCGYEK_S7DAzB_5Y4"
+
+stepzen import \
+     curl "https://api.spotify.com/v1/recommendations?seed_genres=pop" \
+     --header "Authorization: Bearer BQDBxarAXr__JlnDkzi4mow1rOf8cQJkv1AhNX3aNbscksERfiXl-15_rzNDdo3FLtR75DHp5plqltA4Y71Jh3JB8qd_iJKY9SfFAuoUZwlpf8d-qWM" \
+     --query-name "recommendations" \
+     --query-type "Recommendation" \
+     --name "recommendations" \
+     --prefix "Recommend"
+
+stepzen import \
+        curl -X POST "https://accounts.spotify.com/api/token" \
+        --header "Content-Type: application/x-www-form-urlencoded" \
+        --data "grant_type=client_credentials&client_id=312c4537bfb44a62b2fa996a3f13a486&client_secret=b6062cd9286242608000f93fbabb2725" \
+        --query-name "getToken" \
+        --query-type "TokenResponse" \
+        --name "auth"
+
+
+
+        stepzen import \
+        curl 'https://api.spotify.com/v1/search?q=nf&type=track' \
+        --header "Authorization: Bearer BQAzTjeF6e6PnTF_BptOrfmAz8G3ygVaDNHu6CUEUi5BJMe0PFlBeK1u02zv4IEyjDcgP4sDJ_yeE4eKN0gvegx1qUdxPMdLq3S0xOHXj5uzFWKp-GM" \
+        --query-name "search" \
+        --query-type "SearchResult" \
+        --name "search" \
+        --prefix "Search"
+
+stepzen import \
+     curl "https://api.spotify.com/v1/tracks/11dFghVXANMlKmJXsNCbNl" \
+     --header "Authorization: Bearer BQB7rSQhJWReOCaXnlQNtFramfciwUZ5bU-hDyHxRfISvff4VbW6G6HW9K3WK4RBQdZHjT302Dg0FNVy4Y0Aa06lq1Rk7BELshfD-jlHnFlgBvlGrus" \
+     --query-name "getTrack" \
+     --query-type "TrackResponse" \
+     --name "track" \
+     --prefix "Track"
+
+     curl 'https://api.spotify.com/v1/tracks/2LCGFBu1ej6zt4r1VGPjny' \
+  --header 'Authorization: Bearer BQB7rSQhJWReOCaXnlQNtFramfciwUZ5bU-hDyHxRfISvff4VbW6G6HW9K3WK4RBQdZHjT302Dg0FNVy4Y0Aa06lq1Rk7BELshfD-jlHnFlgBvlGrus'

@@ -20,6 +20,7 @@ const Player = () => {
         setPause(true)
         if (sound) {
             await sound.unloadAsync();
+            console.log(sound)
         }
 
         if (!track?.preview_url) {

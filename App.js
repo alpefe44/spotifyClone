@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './screens/LoginScreen';
 import Navigation from './navigation/navigation';
 import PlayerProvider from './providers/PlayerProvider';
+import ApolloClientProvider from './providers/ApolloClientProvider';
 
 
 export default function App() {
   return (
-    <PlayerProvider>
-      <Navigation></Navigation>
-    </PlayerProvider>
+    <ApolloClientProvider>
+      <PlayerProvider>
+        <Navigation></Navigation>
+      </PlayerProvider>
+    </ApolloClientProvider>
 
   );
 }

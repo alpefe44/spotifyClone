@@ -1,10 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
 
-const PlayerContext = createContext({
-    track: undefined,
-    setTrack: () => { },
-});
+const PlayerContext = createContext();
 
 export default function PlayerProvider({ children }) {
     const [track, setTrack] = useState();
