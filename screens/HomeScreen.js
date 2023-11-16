@@ -1,17 +1,58 @@
-import { View, Text, FlatList, Image, Pressable, StyleSheet, TextInput, StatusBar } from 'react-native'
+import { View, Text, FlatList, Image, Pressable, StyleSheet, TextInput, StatusBar, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 import { tracks } from '../assets/data/track'
-import { FontAwesome } from '@expo/vector-icons';
-import InfoTracker from '../components/InfoTracker'
+import { gql, useQuery } from '@apollo/client';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { usePlayerContext } from '../providers/PlayerProvider';
+
+const query = gql`
+  query MyQuery($genres: String!) {
+    recommendations(seed_genres: $genres) {
+      tracks {
+        id
+        name
+        preview_url
+        artists {
+          id
+          name
+        }
+        album {
+          id
+          name
+          images {
+            url
+            width
+            height
+          }
+        }
+      }
+    }
+  }
+`;
+
 const HomeScreen = () => {
 
     const { track, setTrack } = usePlayerContext();
     const [pressed, setPressed] = useState("")
     const [search, setSearch] = useState("")
+    const { data, loading, error } = useQuery(query, {
+        variables: { genres: 'drum-and-bass,house' },
+    });
+
+    if (loading) {
+        return <ActivityIndicator />;
+    }
+
+    if (error) {
+        return (
+            <Text style={{ color: 'white' }}>Failed to fetch recommendations</Text>
+        );
+    }
+
+    const tracks = data?.recommendations?.tracks || [];
 
     const renderItem = ({ item }) => {
+
         return (
             <Pressable onPress={() => setTrack(item)} style={{ padding: 10, width: '100%' }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', width: '90%' }}>
@@ -32,21 +73,21 @@ const HomeScreen = () => {
                 <FlatList
                     data={tracks}
                     renderItem={renderItem}
-                    // ListHeaderComponent={() => {
-                    //     return (
-                    //         <View style={styles.header}>
-                    //             <FontAwesome name="search" size={16} color="gray" />
-                    //             <TextInput
-                    //                 value={search}
-                    //                 placeholder="What do you want to listen to?"
-                    //                 onChangeText={setSearch}
-                    //                 style={styles.input}
-                    //             />
-                    //             <Text style={{ color: 'white' }}>Cancel</Text>
-                    //         </View>
-                    //     )
+                // ListHeaderComponent={() => {
+                //     return (
+                //         <View style={styles.header}>
+                //             <FontAwesome name="search" size={16} color="gray" />
+                //             <TextInput
+                //                 value={search}
+                //                 placeholder="What do you want to listen to?"
+                //                 onChangeText={setSearch}
+                //                 style={styles.input}
+                //             />
+                //             <Text style={{ color: 'white' }}>Cancel</Text>
+                //         </View>
+                //     )
 
-                    // }}
+                // }}
                 ></FlatList>
 
             </View>
